@@ -69,7 +69,7 @@ module Eventbrite
       url += "#{URI.parse(url).query ? '&' : '?'}#{uri_encode(params)}" if params && params.any?
       payload = nil
     else
-      payload = uri_encode(params)
+      payload = params
     end
 
     request_opts = {
@@ -80,6 +80,7 @@ module Eventbrite
       url: url,
       timeout: 120
     }
+    puts request_opts
 
     begin
       response = execute_request(request_opts)
@@ -103,7 +104,8 @@ private
   def self.request_headers(token)
     headers = {
       user_agent: "Eventbrite RubyBindings/#{Eventbrite::VERSION}",
-      authorization: "Bearer #{token}"
+      authorization: "Bearer #{token}",
+      content_type: "application/json"
     }
 
     headers
