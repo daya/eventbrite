@@ -80,7 +80,6 @@ module Eventbrite
       url: url,
       timeout: 120
     }
-    puts request_opts
 
     begin
       response = execute_request(request_opts)
