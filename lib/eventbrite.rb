@@ -41,7 +41,10 @@ module Eventbrite
   }
 
   class << self
-    [:api_base, :api_version, :token].each do |key|
+
+    attr_accessor :token
+
+    [:api_base, :api_version].each do |key|
       define_method "#{key}=" do |value|
         Thread.current["eventbrite_#{key}"] = value
       end
