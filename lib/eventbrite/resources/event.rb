@@ -10,6 +10,11 @@ module Eventbrite
       Util.convert_to_eventbrite_object(response, token)
     end
 
+    def self.update(id, params={}, token=nil)
+      response, token = Eventbrite.request(:post, self.update_url(id), token, params)
+      Util.convert_to_eventbrite_object(response, token)
+    end
+
     private
 
     def self.search_url
@@ -18,6 +23,10 @@ module Eventbrite
 
     def self.create_url
       url
+    end
+
+    def self.update_url(id)
+      url + '/' + id
     end
   end
 end
