@@ -15,6 +15,11 @@ module Eventbrite
       Util.convert_to_eventbrite_object(response, token)
     end
 
+    def self.delete(id, token=nil)
+      response, token = Eventbrite.request(:delete, self.update_url(id), token)
+      Util.convert_to_eventbrite_object(response, token)
+    end
+
     private
 
     def self.search_url

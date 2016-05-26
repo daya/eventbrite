@@ -71,6 +71,10 @@ module Eventbrite
       # Make params into GET parameters
       url += "#{URI.parse(url).query ? '&' : '?'}#{uri_encode(params)}" if params && params.any?
       payload = nil
+    when :post
+      payload = params
+    when :delete
+      payload = nil
     else
       payload = params
     end
